@@ -74,6 +74,8 @@
     --color-secondary-200: 191, 192, 203;
     --color-secondary-100: 212, 213, 221;
     --color-secondary-50: 223, 223, 229;
+    --color-secondary-25: 240, 248, 255;
+    --color-secondary-0: 245, 255, 250;
     --color-success: 0, 192, 115;
     --color-warning: 255, 153, 0;
     --color-error: 255, 71, 87;
@@ -84,13 +86,16 @@
 
 @layer components {
   .textField__input {
-    @apply w-full py-3 px-4 rounded-xl text-secondary-900 border border-secondary-100 bg-secondary-100 hover:border-primary-500 focus:border-primary-500 focus:bg-secondary-0 transition-all duration-300 ease-out focus:shadow-lg focus:shadow-primary-200 dark:focus:shadow-secondary-200;
+    @apply w-full py-2 px-3 rounded-xl text-secondary-900 border border-primary-300  hover:border-primary-500 focus:border-primary-500 transition-all duration-300 ease-out focus:shadow-md focus:shadow-primary-200 dark:focus:shadow-secondary-200 outline-none;
+  }
+  .radio-input {
+    @apply form-radio text-primary-900 focus:ring-0 focus:outline-none border border-primary-300;
   }
   .btn {
     @apply px-3 py-1 font-bold rounded-xl transition-all duration-300;
   }
   .btn--primary {
-    @apply px-4 py-3 bg-primary-900 text-white hover:bg-primary-800 shadow-lg shadow-primary-300 dark:shadow-secondary-200;
+    @apply px-3 py-2 bg-primary-900 text-white hover:bg-primary-800 shadow-lg shadow-primary-300 dark:shadow-secondary-200;
   }
   .btn--secondary {
     @apply bg-secondary-600 text-secondary-100;
@@ -101,6 +106,9 @@
   .btn--danger {
     @apply border border-rose-700 text-rose-700;
   }
+  .btn--warning {
+    @apply border border-orange-600 text-orange-600;
+  }
   .badge {
     @apply inline-block whitespace-nowrap rounded-xl px-2 py-0.5;
   }
@@ -108,7 +116,7 @@
     @apply bg-primary-900 text-white;
   }
   .badge--secondary {
-    @apply bg-secondary-200 text-secondary-600;
+    @apply bg-secondary-100 text-secondary-600;
   }
   .badge--success {
     @apply bg-green-500 text-white;

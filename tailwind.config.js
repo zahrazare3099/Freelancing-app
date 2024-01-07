@@ -38,6 +38,7 @@ export default {
           200: withOpacity("--color-secondary-200"),
           100: withOpacity("--color-secondary-100"),
           50: withOpacity("--color-secondary-50"),
+          25: withOpacity("--color-secondary-25"),
           0: withOpacity("--color-secondary-0"),
         },
         success: withOpacity("--color-success"),
@@ -53,8 +54,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")({ strategy: "class" })],
 };
-// tailwindFormPlugin({
-//   strategy: "class",
-// }),
+// tailwindFormPlugin({strategy: "class"})
