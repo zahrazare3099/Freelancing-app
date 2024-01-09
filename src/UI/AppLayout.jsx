@@ -8,7 +8,7 @@ export default function AppLayout() {
       <SidebarApp />
       <div className="w-screen order-2 flex flex-col">
         <HeaderApp />
-        <div className="bg-secondary-25 max-w-screen-xl h-screen">
+        <div className="bg-secondary-50 max-w-screen-xl h-screen">
           <div className="m-5">
             <Outlet />
           </div>
