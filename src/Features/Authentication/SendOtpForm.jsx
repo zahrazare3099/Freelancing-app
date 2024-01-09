@@ -2,10 +2,10 @@ import TextFiled from "../../UI/TextFiled";
 import Pending from "../../UI/Pending";
 
 export default function SendOtpForm({
-  phoneNumber,
-  phoneOnchange,
   isSendingOtp,
   onSubmit,
+  register,
+  errors,
 }) {
   return (
     <div className="w-full flex justify-center p-5">
@@ -16,10 +16,22 @@ export default function SendOtpForm({
         <TextFiled
           name="phoneNumber"
           label="شماره موبایل"
-          value={phoneNumber}
-          onChange={phoneOnchange}
+          register={register}
+          validationSchema={{
+            require: "ضروری است",
+            pattern: {
+              value: /^[0-9]+$/,
+              message: "تنها مقدار عددی قابل قبول است",
+            },
+            maxLength: {
+              value: 11,
+              message: "تعداد رقم های شماره وارد شده غیر قابل قبول می باشد",
+            },
+          }}
+          required
+          errors={errors}
         />
-        <div>
+        <div className="w-full flex justify-end pt-3">
           {isSendingOtp ? (
             <div className="w-full flex justify-center">
               <Pending />
