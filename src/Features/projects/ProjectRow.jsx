@@ -9,6 +9,8 @@ import { useState } from "react";
 import ConfirmDelete from "../../UI/ConfirmDelete";
 import useRemoveProject from "./useRemoveProject";
 import toast from "react-hot-toast";
+import ProjectForm from "../../UI/projectForm";
+import ToggleProjectStatus from "./ToggleProjectStatus";
 
 export default function ProjectRow({ project, index }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -32,11 +34,7 @@ export default function ProjectRow({ project, index }) {
       </td>
       <td>{project.freelancer?.name || "--"}</td>
       <td>
-        {project.status == "باز" ? (
-          <span className="badge badge--success">باز</span>
-        ) : (
-          <span className="badge badge--danger">بسته</span>
-        )}
+        <ToggleProjectStatus project={project} />
       </td>
       <td>
         <div className="flex items-center gap-x-2">
@@ -48,7 +46,12 @@ export default function ProjectRow({ project, index }) {
                 setIsEditOpen(false);
               }}
             >
-              توضیحات {project.title}
+              <ProjectForm
+                projectToEdit={project}
+                setIsOpen={() => {
+                  setIsEditOpen(false);
+                }}
+              />
             </Modal>
             <button>
               <TbPencilMinus

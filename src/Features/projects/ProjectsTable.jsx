@@ -1,6 +1,7 @@
 import Empty from "../../UI/Empty";
 import Pending from "../../UI/Pending";
 import Table from "../../UI/Table";
+import AddProjectBtn from "./AddProjectBtn";
 import ProjectRow from "./ProjectRow";
 import useOwnerProjects from "./useOwnerProjects";
 const projects = [
@@ -40,23 +41,26 @@ export default function ProjectsTable() {
   // if (isLoading) return <Pending />;
   if (projects.length == 0) return <Empty label="پروژه" />;
   return (
-    <Table>
-      <Table.Header>
-        <th>#</th>
-        <th>عنوان پروژه</th>
-        <th>دسته بندی</th>
-        <th>بودجه</th>
-        <th>ددلاین</th>
-        <th>تگ ها</th>
-        <th>فریلنسر</th>
-        <th>وضعیت</th>
-        <th>عملیات</th>
-      </Table.Header>
-      <Table.Body>
-        {projects?.map((project, index) => (
-          <ProjectRow key={project._id} project={project} index={index} />
-        ))}
-      </Table.Body>
-    </Table>
+    <div>
+      <AddProjectBtn />
+      <Table>
+        <Table.Header>
+          <th>#</th>
+          <th>عنوان پروژه</th>
+          <th>دسته بندی</th>
+          <th>بودجه</th>
+          <th>ددلاین</th>
+          <th>تگ ها</th>
+          <th>فریلنسر</th>
+          <th>وضعیت</th>
+          <th>عملیات</th>
+        </Table.Header>
+        <Table.Body>
+          {projects?.map((project, index) => (
+            <ProjectRow key={project._id} project={project} index={index} />
+          ))}
+        </Table.Body>
+      </Table>
+    </div>
   );
 }
