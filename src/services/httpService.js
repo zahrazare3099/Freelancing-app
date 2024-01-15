@@ -28,7 +28,7 @@ app.interceptors.response.use(
   async (err) => {
     const originalConfig = err.config;
     // handle (access and refresh) token
-    if (err.response.status === 401 && !originalConfig?._retry) {
+    if (err?.response.status === 401 && !originalConfig?._retry) {
       const originalConfig_retry = true;
       try {
         // developer send req based on Error

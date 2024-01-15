@@ -7,7 +7,7 @@ import { getOtp } from "../../services/authService";
 import { useForm } from "react-hook-form";
 
 export default function AuthContainer() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   // handle send otp form
   const {
     isPending: isSendingOtp,
@@ -16,6 +16,7 @@ export default function AuthContainer() {
   } = useMutation({
     mutationFn: getOtp,
   });
+  // declare form
   const {
     register,
     formState: { errors },
@@ -25,13 +26,14 @@ export default function AuthContainer() {
     defaultValues: { phoneNumber: "" },
     mode: "onChange",
   });
+  //handle send phone number
   const sendOtpHandler = async (data) => {
     try {
       const { message } = await mutateAsync(data);
       toast.success(message);
       setStep(2);
     } catch (error) {
-      toast.error(error?.response?.data.message);
+      toast.error(error?.response?.data?.message);
     }
   };
   const renderStep = () => {
