@@ -11,13 +11,16 @@ export default function CompleteProfileForm() {
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   // const [role, setRole] = useState("");
+  // declare Form
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+  // declare navigate
   const navigate = useNavigate();
+  // import own func
   const { mutateAsync, isPending: isSendingOtp } = useMutation({
     mutationFn: completeProfile,
   });

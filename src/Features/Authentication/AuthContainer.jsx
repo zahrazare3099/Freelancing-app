@@ -7,7 +7,7 @@ import { getOtp } from "../../services/authService";
 import { useForm } from "react-hook-form";
 
 export default function AuthContainer() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   // handle send otp form
   const {
     isPending: isSendingOtp,

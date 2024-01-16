@@ -13,6 +13,7 @@ export default function CheckOtpForm({
   onResendOtp,
   otpResponse,
 }) {
+  // OTP input value
   const [otp, setOtp] = useState("");
   // timmer
   const [time, setTime] = useState("");
