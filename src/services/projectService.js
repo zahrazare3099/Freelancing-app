@@ -21,7 +21,7 @@ export function editProjectApi({ id, newProject }) {
 export function toggleProjectStatuseApi({ id, data }) {
   return http.patch(`/project/${id}`, data).then(({ data }) => data.data);
 }
-
+// get all proposals's project
 export function getProjectApi(id) {
   return http.get(`/project/${id}`).then(({ data }) => data.data);
 }

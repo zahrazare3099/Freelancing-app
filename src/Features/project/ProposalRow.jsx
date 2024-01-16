@@ -24,6 +24,9 @@ export default function ProposalRow({ proposoal, index }) {
         </span>
       </td>
       <td>
+        <button className="" onClick={() => setOpen(true)}>
+          تغییر وضعیت درخواست
+        </button>
         <Modal
           open={open}
           onClose={() => setOpen(false)}
@@ -34,9 +37,6 @@ export default function ProposalRow({ proposoal, index }) {
             onClose={() => setOpen(false)}
           />
         </Modal>
-        <button className="" onClick={() => setOpen(true)}>
-          تغییر وضعیت درخواست
-        </button>
       </td>
     </Table.Row>
   );
