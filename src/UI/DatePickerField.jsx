@@ -3,7 +3,7 @@ import persian from "react-date-object/calendars/persian";
 import DatePicker from "react-multi-date-picker";
 import persian_fa from "react-date-object/locales/persian_fa";
 
-export default function DatePickerField({ label, data, setDate }) {
+export default function DatePickerField({ label, date, setDate }) {
   return (
     <div className="flex flex-col gap-y-2">
       <label htmlFor="datePicker" className="px-2">
@@ -13,8 +13,8 @@ export default function DatePickerField({ label, data, setDate }) {
         containerClassName="w-full"
         inputClass="textField__input"
         calendarPosition="bottom-center"
-        value={data}
-        onChange={(data) => setDate(data)}
+        value={date}
+        onChange={(date) => setDate(date)}
         calendar={persian}
         locale={persian_fa}
         format="YYYY/MM/DD"

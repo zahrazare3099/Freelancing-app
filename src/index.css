@@ -156,11 +156,14 @@ body {
   color: rgb(var(--color-secondary-900));
 }
 .rti--container .rti--input {
-  background-color: rgb(var(--color-secondary-50));
   color: rgb(var(--color-secondary-800));
   padding: 0.3rem 1rem;
   border-radius: 0.5rem;
   outline: none;
+}
+.rti--input {
+  background-color: rgb(var(--color-secondary-0));
+  border: 1px solid rgb(var(--color-primary-400));
 }
 
 .rti--tag {

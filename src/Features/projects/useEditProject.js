@@ -9,11 +9,9 @@ export default function useEditProject() {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["owner-projects"] });
       toast.success(data.message);
-      toast("currect in edit mood");
     },
     onError: (err) => {
       toast.error(err?.response?.data?.mmessage);
-      toast("error in edit mood");
     },
   });
   return { editProject, isEditing };

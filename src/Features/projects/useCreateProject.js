@@ -11,11 +11,9 @@ export default function useCreateProject() {
         queryKey: ["owner-projects"],
       });
       toast.success(message);
-      toast("currect in create mood");
     },
     onError: (err) => {
       toast.error(err?.response?.data?.message);
-      toast("error in create mood");
     },
   });
   return { isCreating, createProject };

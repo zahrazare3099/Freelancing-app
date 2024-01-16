@@ -20,22 +20,11 @@ export default function ProjectForm({ setIsOpen, projectToEdit = {} }) {
     category,
     tags: prevTags,
   } = projectToEdit;
-  const isEditSession = Boolean(editId);
-  let editValues = {};
-  // if on edit mood fill theme with these parameter
-  if (isEditSession) {
-    editValues = {
-      title,
-      description,
-      budget,
-      deadline: new Date(deadline)?.toISOString(),
-      category: category?._id,
-    };
-  }
+
   // initial states
   const [tags, setTags] = useState(prevTags || []);
   const [date, setDate] = useState(deadline || new Date());
-  const { categories } = useCategory();
+  const { categories, loadingCategory } = useCategory();
   const { createProject } = useCreateProject();
   const { editProject } = useEditProject();
 
@@ -75,13 +64,29 @@ export default function ProjectForm({ setIsOpen, projectToEdit = {} }) {
       },
     },
   };
-  // handle form
+  // convert to Bolean data >> using in condition loop
+  const isEditSession = Boolean(editId);
+  // handle to moods with initial editValues
+  let editValues = {};
+  // if on edit mood fill theme with these parameter
+  // >> pass to defaultValues in form hook
+  if (isEditSession) {
+    editValues = {
+      title,
+      description,
+      budget,
+      deadline: new Date(deadline)?.toISOString(),
+      category: category?._id,
+    };
+  }
+  // declare form
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm({
+    // to fill inputs
     defaultValues: editValues,
     mode: "onChange",
   });
@@ -93,9 +98,9 @@ export default function ProjectForm({ setIsOpen, projectToEdit = {} }) {
       tags,
       deadline: new Date(date).toISOString(),
     };
-    //   check edit mood
+    //   check edit mood to pass own Fn
     if (isEditSession) {
-      // in editMood
+      // in editMood Fn
       editProject(
         { id: editId, newProject },
         {
@@ -162,12 +167,12 @@ export default function ProjectForm({ setIsOpen, projectToEdit = {} }) {
               label="دسته بندی"
               name="categury"
               register={register}
-              // options={categories}
               options={[
                 { value: "programming", label: "برنامه نویسی" },
                 { value: "design", label: "طراحی" },
                 { value: "SEO", label: "سئو" },
               ]}
+              loadingCategory={loadingCategory}
               errors={errors}
               required
             />
@@ -190,8 +195,12 @@ export default function ProjectForm({ setIsOpen, projectToEdit = {} }) {
           <button type="submit" className="btn btn--primary flex-1">
             تایید
           </button>
-          <button type="" className="btn btn--outline flex-1">
-            ویرایش
+          <button
+            type=""
+            className="btn btn--outline flex-1"
+            onClick={() => setIsOpen(false)}
+          >
+            انصراف
           </button>
         </div>
       </form>

@@ -82,12 +82,16 @@ export default function ProjectRow({ project, index }) {
                 }}
                 disable={false}
                 onConfirm={() => {
-                  toast("در حال حاضر حذف پروژه امکان پذیر نمی باشد", {
-                    icon: "⛔",
+                  removeProject(project._id, {
+                    onSuccess: ({ message }) => {
+                      toast.success(message);
+                      setIsDeleteOpen(false);
+                    },
+                    onError: () =>
+                      toast("در حال حاضر حذف پروژه امکان پذیر نمی باشد", {
+                        icon: "⛔",
+                      }),
                   });
-                  // removeProject(project._id, {
-                  //   onSuccess: () => setIsDeleteOpen(false),
-                  // });
                 }}
               />
             </Modal>
