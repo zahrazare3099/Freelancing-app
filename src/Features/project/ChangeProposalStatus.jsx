@@ -9,7 +9,7 @@ export default function ChangeProposalStatus({ onClose, proposoalId }) {
   const { changeProposalStatus, isUpdating } = useChangeProposalStatus();
   const queryClient = useQueryClient();
   const { id: projectId } = useParams();
-  // declare form exp=> defaultValues
+  // declare form exp=> defaultValues ? useCategory
   const {
     register,
     handleSubmit,
