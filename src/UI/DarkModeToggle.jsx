@@ -1,10 +1,16 @@
 import React from "react";
-import { HiSun } from "react-icons/hi2";
+import { HiOutlineMoon, HiSun } from "react-icons/hi2";
+import { useTheme } from "../context/themeProvider";
 
 export default function DarkModeToggle() {
+  const { isDarkMode, toggleTheme } = useTheme();
   return (
-    <div>
-      <HiSun className="w-5 h-5 text-primary-500" />
-    </div>
+    <button onClick={toggleTheme}>
+      {isDarkMode ? (
+        <HiSun className="w-5 h-5 text-primary-500" />
+      ) : (
+        <HiOutlineMoon className="w-5 h-5 text-primary-500" />
+      )}
+    </button>
   );
 }

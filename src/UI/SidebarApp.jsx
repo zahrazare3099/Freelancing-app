@@ -7,7 +7,7 @@ export default function SidebarApp() {
 
   return (
     <div
-      className={`border bg-secondary-0 text-secondary-800 p-3 flex flex-col gap-y-6 transition-all duration-700 ${
+      className={`bg-secondary-0 text-secondary-800 p-3 flex flex-col gap-y-6 transition-all duration-700 ${
         open ? "w-48 duration-1000 delay-200 ease-in-out" : "w-16 duration-500"
       }`}
     >
@@ -43,7 +43,7 @@ export default function SidebarApp() {
 }
 
 function CustomNavLink({ children, to, icon, open }) {
-  const navlinkClass = `p-1 rounded-lg flex items-center ${
+  const navlinkClass = `items-center p-1 rounded-lg flex  ${
     open ? null : "justify-center"
   } gap-x-2 hover:bg-primary-100/50 hover:text-primary-600 text-secondary-800`;
 

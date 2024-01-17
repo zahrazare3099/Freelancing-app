@@ -12,7 +12,7 @@ export default function HeaderMenu() {
           <HiOutlineUser className="w-5 h-5 text-primary-500" />
         </Link>
       </li>
-      <li>
+      <li className="flex items-center">
         <DarkModeToggle />
       </li>
       <li>

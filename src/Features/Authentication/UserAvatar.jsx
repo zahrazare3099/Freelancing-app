@@ -11,7 +11,7 @@ export default function UserAvatar() {
           className="h-7 w-7 rounded-full object-cover object-center"
         />
       </div>
-      <div>{user?.name}</div>
+      <div className="text-primary-800">{user?.name}</div>
     </div>
   );
 }
