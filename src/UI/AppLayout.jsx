@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import HeaderApp from "./HeaderApp";
-import SidebarApp from "./SidebarApp";
 
-export default function AppLayout() {
+export default function AppLayout({ children }) {
   return (
     <div className="h-screen flex ">
-      <SidebarApp />
+      {/* <SidebarApp /> */}
+      {children}
       <div className="w-screen order-2 flex flex-col">
         <HeaderApp />
         <div className="bg-secondary-50 max-w-screen-xl h-screen">
