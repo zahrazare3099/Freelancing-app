@@ -25,3 +25,8 @@ export function toggleProjectStatuseApi({ id, data }) {
 export function getProjectApi(id) {
   return http.get(`/project/${id}`).then(({ data }) => data.data);
 }
+
+// get All projects to see freelancers
+export function getProjectsApi() {
+  return http.get("/project/list").then(({ data }) => data.data);
+}

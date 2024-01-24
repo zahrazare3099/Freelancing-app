@@ -1,6 +1,6 @@
+import DashboardHeader from "../../UI/DashboardHeader";
 import Pending from "../../UI/Pending";
 import useOwnerProjects from "../projects/useOwnerProjects";
-import DashboardHeader from "./DashboardHeader";
 import Stats from "./Stats";
 
 export default function DashboardLayout() {
