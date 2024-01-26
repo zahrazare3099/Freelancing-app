@@ -1,10 +1,14 @@
+import Modal from "../../../UI/Modal";
 import Table from "../../../UI/Table";
 import toLocalDateShort from "../../../utils/toLocalDateShort";
 import toPersianNumber from "../../../utils/toPersianNumber";
 import truncatrText from "../../../utils/truncatrText";
 import { MdAssignmentAdd } from "react-icons/md";
+import CreateProposalRequest from "../../Proposal/CreateProposalRequest";
+import { useState } from "react";
 
 export default function ProjectRow({ project, index }) {
+  const [open, setOpen] = useState(false);
   const projectStatus = {
     OPEN: {
       label: "باز",
@@ -27,7 +31,14 @@ export default function ProjectRow({ project, index }) {
         </span>
       </td>
       <td>
-        <button>
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+          title={`ایجاد درخواست برای پروژه ${project.title}`}
+        >
+          <CreateProposalRequest onClose={setOpen} projectId={project._id} />
+        </Modal>
+        <button onClick={() => setOpen(true)}>
           <MdAssignmentAdd className="w-5 h-5 text-primary-900" />
         </button>
       </td>

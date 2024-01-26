@@ -1,6 +1,7 @@
 import http from "./httpService";
 
-export default function changeProposalStatusApi({ id, data }) {
+// rest data becuse we pass multi item
+export default function changeProposalStatusApi({ id, ...data }) {
   return http.patch(`/proposal/${id}`, data).then(({ data }) => data.data);
 }
 
@@ -8,4 +9,9 @@ export default function changeProposalStatusApi({ id, data }) {
 // if user Role = Admin =>pass All proposals and etc...
 export function getProposalsApi() {
   return http.get("/proposals/list").then(({ data }) => data.data);
+}
+
+//   creat proposal request too see owner
+export function createProposalsReqApi({ data }) {
+  return http.post(`/proposal/add`, data).then(({ data }) => data.data);
 }

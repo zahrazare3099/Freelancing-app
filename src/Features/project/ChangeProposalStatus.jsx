@@ -18,13 +18,13 @@ export default function ChangeProposalStatus({ onClose, proposoalId }) {
   // handle submit
   const onSubmit = (data) => {
     changeProposalStatus(
-      { id: proposoalId, data },
+      { id: proposoalId, projectId, data },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["project", projectId] });
           onClose();
         },
-      }
+      },
     );
   };
   return (
