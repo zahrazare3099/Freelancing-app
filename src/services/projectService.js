@@ -27,6 +27,6 @@ export function getProjectApi(id) {
 }
 
 // get All projects to see freelancers
-export function getProjectsApi() {
-  return http.get("/project/list").then(({ data }) => data.data);
+export function getProjectsApi(search) {
+  return http.get(`/project/list${search}`).then(({ data }) => data.data);
 }
