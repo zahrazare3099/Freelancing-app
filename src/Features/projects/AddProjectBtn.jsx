@@ -1,7 +1,7 @@
 import Modal from "../../UI/Modal";
 import { useState } from "react";
 import { HiPlus } from "react-icons/hi";
-import ProjectForm from "../../UI/projectForm";
+import ProjectForm from "../../UI/ProjectForm";
 
 export default function AddProjectBtn() {
   const [isOpen, setIsOpen] = useState(false);
