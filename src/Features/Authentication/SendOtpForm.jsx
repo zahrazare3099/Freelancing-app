@@ -14,7 +14,7 @@ export default function SendOtpForm({
       <div className="bg-slate-100/10 shadow-lg ring-1 ring-black/5 rounded-b-3xl px-4 pb-3 flex flex-col items-center">
         <div className="topLOGIN w-80 flex flex-col items-center">
           <img
-            src="public\vite.svg"
+            src="/vite.svg"
             alt="viteLOGO"
             className="-translate-y-3 w-48 flex"
           />
