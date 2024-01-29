@@ -7,9 +7,9 @@ export default function DarkModeToggle() {
   return (
     <button onClick={toggleTheme}>
       {isDarkMode ? (
-        <HiSun className="w-5 h-5 text-primary-500" />
+        <HiSun className="w-5 h-5 text-primary-500 hover:text-yellow-100" />
       ) : (
-        <HiOutlineMoon className="w-5 h-5 text-primary-500" />
+        <HiOutlineMoon className="w-5 h-5 text-primary-500 hover:text-yellow-100" />
       )}
     </button>
   );
