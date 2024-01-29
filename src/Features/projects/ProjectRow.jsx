@@ -9,7 +9,7 @@ import { useState } from "react";
 import ConfirmDelete from "../../UI/ConfirmDelete";
 import useRemoveProject from "./useRemoveProject";
 import toast from "react-hot-toast";
-import ProjectForm from "../../UI/projectForm";
+import ProjectForm from "../../UI/ProjectForm";
 import ToggleProjectStatus from "./ToggleProjectStatus";
 import { Link } from "react-router-dom";
 
