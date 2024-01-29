@@ -1,14 +1,25 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
+import DarkModeToggle from "../UI/DarkModeToggle";
+import { HiOutlineLogin } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="bg-primary-100 h-screen flex flex-col justify-between">
+      <div className="flex items-center gap-x-2 p-4 flex-row-reverse">
+        <HiOutlineLogin
+          className="h-4 w-4 text-primary-600 cursor-pointer hover:text-primary-800"
+          onClick={() => navigate("/auth")}
+        />
+        <DarkModeToggle />
+      </div>
       <div className="pt-5 pb-20 flex flex-col items-center justify-center">
         <h1 className="font-bold p-5">خانه</h1>
         <div>در حال راه اندازی سایت</div>
       </div>
-      <footer className="bg-secondary-100 text-gray-300 p-8">
+      <footer className="bg-slate-800 text-gray-300 p-8">
         <div className="container mx-auto text-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
