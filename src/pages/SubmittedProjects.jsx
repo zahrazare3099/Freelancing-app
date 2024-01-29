@@ -1,6 +1,6 @@
 import React from "react";
-import ProjectsHeader from "../Features/freelancer/projects/projectsHeader";
 import ProjectTable from "../Features/freelancer/projects/ProjectTable";
+import ProjectsHeader from "../Features/freelancer/projects/ProjectsHeader";
 
 export default function SubmittedProjects() {
   return (
