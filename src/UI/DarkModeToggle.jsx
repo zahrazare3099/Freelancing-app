@@ -1,6 +1,6 @@
 import React from "react";
 import { HiOutlineMoon, HiSun } from "react-icons/hi2";
-import { useTheme } from "../context/themeProvider";
+import { useTheme } from "../context/theme/ThemeProvider";
 
 export default function DarkModeToggle() {
   const { isDarkMode, toggleTheme } = useTheme();

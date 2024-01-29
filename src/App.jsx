@@ -8,13 +8,13 @@ import NotFound from "./pages/NotFound";
 import OwnerDashboard from "./pages/OwnerDashboard";
 import Project from "./pages/Project";
 import Projects from "./pages/Projects";
-import { ThemeProvider } from "./context/themeProvider";
 import OwnerLayout from "./Features/owner/OwnerLayout";
 import FreelancerDashboard from "./pages/FreelancerDashboard";
 import FreelancerLayout from "./Features/freelancer/FreelancerLayout";
 import Proposals from "./pages/Proposals";
 import SubmittedProjects from "./pages/SubmittedProjects";
 import ProtectedRoute from "./UI/ProtectedRoute";
+import { ThemeProvider } from "./context/theme/ThemeProvider";
 
 function App() {
   const queryClient = new QueryClient();
