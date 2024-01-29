@@ -24,5 +24,5 @@ export default function ProtectedRoute({ children }) {
         <Pending />
       </div>
     );
-  return <>{children}</>;
+  if (isAuthenticated && isAuthenticated) return <>{children}</>;
 }
