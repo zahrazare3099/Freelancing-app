@@ -29,13 +29,16 @@ export default function AuthContainer() {
   //handle send phone number
   const sendOtpHandler = async (data) => {
     try {
-      const { message } = await mutateAsync(data);
-      toast.success(message);
+      const response = await mutateAsync(data);
+      toast.success(response?.data?.message);
       setStep(2);
+      console.log("success", response?.data);
     } catch (error) {
       toast.error(error?.response?.data?.message);
+      console.log("error", error?.response?.data);
     }
   };
+  const onError = (err) => toast.error(err);
   const renderStep = () => {
     switch (step) {
       case 1:
@@ -43,7 +46,7 @@ export default function AuthContainer() {
           <SendOtpForm
             register={register}
             isSendingOtp={isSendingOtp}
-            onSubmit={handleSubmit(sendOtpHandler)}
+            onSubmit={handleSubmit(sendOtpHandler, onError)}
             errors={errors}
           />
         );
@@ -52,7 +55,7 @@ export default function AuthContainer() {
           <CheckOtpForm
             phoneNumber={getValues("phoneNumber")}
             onBack={() => setStep(1)}
-            onResendOtp={sendOtpHandler}
+            onResendOtp={handleSubmit(sendOtpHandler, onError)}
             otpResponse={otpResponse}
           />
         );

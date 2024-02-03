@@ -10,7 +10,7 @@ export default function SendOtpForm({
   errors,
 }) {
   return (
-    <div className="w-full h-screen bg-primary-200 flex flex-col items-center">
+    <div className="w-full min-h-full bg-primary-200 flex flex-col items-center">
       <div className="bg-slate-100/10 shadow-lg ring-1 ring-black/5 rounded-b-3xl px-4 pb-3 flex flex-col items-center">
         <div className="topLOGIN w-80 flex flex-col items-center">
           <img

@@ -8,9 +8,6 @@ import { useForm } from "react-hook-form";
 import RadioInputGroup from "../../UI/RadioInputGroup";
 
 export default function CompleteProfileForm() {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [role, setRole] = useState("");
   // declare Form
   const {
     register,
@@ -27,9 +24,14 @@ export default function CompleteProfileForm() {
 
   // چک شود که وقتی اینپوت ها خالی هستند نشه ساب زد که ارور نده
   const completeProfileFormHandler = async (data = "") => {
+    console.log("data", data);
     try {
-      const { message, user } = await mutateAsync(data);
+      const {
+        data: { message, user },
+      } = await mutateAsync(data);
       toast.success(message);
+      console.log("message", message);
+      console.log("user", user);
       // push to panel, based on role , Activiate , status
       if (user.isActive !== 2) {
         navigate("/");
@@ -40,75 +42,84 @@ export default function CompleteProfileForm() {
       if (user.role == "FREELANCER") return navigate("/freelancer");
     } catch (error) {
       toast.error(error?.response?.data?.message);
+      console.log("err", error?.response);
     }
   };
 
   return (
-    <div className="w-80 flex flex-col justify-center p-5 rounded-lg bg-primary-100">
-      <form
-        className="flex flex-col gap-3"
-        onSubmit={handleSubmit(completeProfileFormHandler)}
-      >
-        <h2 className="font-bold text-center">تکمیل اطلاعات</h2>
-        <TextFiled
-          name="username"
-          label="نام و نام خانوادگی"
-          register={register}
-          validationSchema={{
-            require: "نام و نام خانوادگی ضروری است",
-            minLength: {
-              value: 8,
-              message: "نام و نام خانوادگی خود را بصورت کامل وارد کنید",
-            },
-          }}
-          errors={errors}
-          required
-          // value={name}
-          // onChange={(e) => setName(e.target.value)}
-        />
-        <TextFiled
-          name="email"
-          label="ایمیل"
-          register={register}
-          validationSchema={{
-            require: "ایمیل ضروری است",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "ایمیل نامعتبر است",
-            },
-          }}
-          errors={errors}
-          required
-          // value={email}
-          // onChange={(e) => setEmail(e.target.value)}
-        />
-        <div className="flex justify-evenly items-center my-2">
-          <RadioInputGroup
-            register={register}
-            errors={errors}
-            required
-            watch={watch}
-            config={{
-              name: "role",
-              validationSchema: { require: "انتخاب نقش ضروری است" },
-              options: [
-                { value: "OWNER", label: "کارفرما" },
-                { value: "FREELANCER", label: "فریلنسر" },
-              ],
-            }}
+    <div className="w-full min-h-full bg-primary-200 flex flex-col items-center">
+      <div className="bg-slate-100/10 shadow-lg ring-1 ring-black/5 rounded-b-3xl px-4 pb-3 flex flex-col items-center">
+        <div className="topLOGIN w-80 flex flex-col items-center">
+          <img
+            src="/vite.svg"
+            alt="viteLOGO"
+            className="-translate-y-3 w-48 flex"
           />
+          <h2 className="font-bold text-xl pb-4">تکمیل اطلاعات</h2>
         </div>
 
-        {isSendingOtp ? (
-          <div className="w-full flex justify-center">
-            <Pending />
+        <form
+          className="w-full flex flex-col gap-y-3 px-3"
+          onSubmit={handleSubmit(completeProfileFormHandler)}
+        >
+          <TextFiled
+            name="username"
+            label="نام و نام خانوادگی"
+            register={register}
+            validationSchema={{
+              require: "نام و نام خانوادگی ضروری است",
+              pattern: {
+                value: "/[آ-ی]/",
+                message: "لطفا اطلاعات خود را به فارسی وارد کنید",
+              },
+            }}
+            errors={errors}
+            required
+          />
+          <TextFiled
+            name="email"
+            label="ایمیل"
+            register={register}
+            validationSchema={{
+              require: "ایمیل ضروری است",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "ایمیل نامعتبر است",
+              },
+            }}
+            errors={errors}
+            required
+          />
+          <div className="flex justify-evenly items-center my-2">
+            <RadioInputGroup
+              register={register}
+              errors={errors}
+              required
+              watch={watch}
+              config={{
+                name: "role",
+                validationSchema: { require: "انتخاب نقش ضروری است" },
+                options: [
+                  { value: "OWNER", label: "کارفرما" },
+                  { value: "FREELANCER", label: "فریلنسر" },
+                ],
+              }}
+            />
           </div>
-        ) : (
-          <button type="submit" className="btn btn--primary">
-            تایید
-          </button>
-        )}
-      </form>
+
+          <div className="w-full flex justify-center pb-4">
+            {isSendingOtp ? (
+              <div className="w-full flex justify-center">
+                <Pending />
+              </div>
+            ) : (
+              <button type="submit" className="btn btn--primary w-full">
+                تایید
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

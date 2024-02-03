@@ -15,17 +15,14 @@ export default function CheckOtpForm({
 }) {
   // OTP input value
   const [otp, setOtp] = useState("");
+
   // timmer
   const [time, setTime] = useState("");
-  let timeLeft = 30;
+  const [validTime, setValidTime] = useState(true);
+  // expiresIn: 90000;
+  let timeLeft = 180;
   let stepTime;
   // handle timmer
-  // useEffect(() => {
-  //   const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
-  //   return () => {
-  //     if (timer) clearInterval(timer);
-  //   };
-  // }, [time]);
   useEffect(() => {
     const intervalId = setInterval(() => {
       const minutes = Math.floor(timeLeft / 60);
@@ -33,12 +30,13 @@ export default function CheckOtpForm({
       stepTime = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
       timeLeft--;
       if (timeLeft < 0) {
-        clearInterval(intervalId);
         setTime(null);
+        setValidTime(false);
+        clearInterval(intervalId);
       }
       setTime(stepTime);
-    }, 2000);
-  }, [timeLeft]);
+    }, 1000);
+  }, [timeLeft, onResendOtp]);
 
   // handle check otp form
   const { isPending: isSendingOtp, mutateAsync } = useMutation({
@@ -50,10 +48,15 @@ export default function CheckOtpForm({
   const handleCheckOtpForm = async (e) => {
     e.preventDefault();
     try {
-      const { message, user } = await mutateAsync({ phoneNumber, otp });
+      const {
+        data: { message, user },
+      } = await mutateAsync({ phoneNumber, otp });
       toast.success(message);
       // push to panel, based on role , Activiate , status
-      if (!user.isActive) return navigate("/complete-profile");
+      // isActive: false ,isVerifiedPhoneNumber: true ,role: "USER" ,status: 1
+      if (user.isActive == false) {
+        return navigate("/complete-profile");
+      }
       if (user.isActive !== 2) {
         navigate("/");
         toast("پروفایل شما در انتطار تایید است.", { icon: "🕵️‍♀️" });
@@ -66,8 +69,9 @@ export default function CheckOtpForm({
       toast.error(error?.response?.data?.message);
     }
   };
+
   return (
-    <div className="w-full h-screen bg-primary-200 flex flex-col items-center">
+    <div className="w-full min-h-full bg-primary-200 flex flex-col items-center">
       <div className="bg-slate-100/10 shadow-lg ring-1 ring-black/5 rounded-b-3xl px-4 pb-3 flex flex-col items-center">
         <div className="topLOGIN w-80 flex flex-col items-center">
           <img
@@ -86,15 +90,14 @@ export default function CheckOtpForm({
           <h1 className="font-bold py-2 px-3 w-full">
             کد تایید را وارد نمایید
           </h1>
-          <div className="text-xs px-3 w-full" onClick={onBack}>
-            {/* <p>{otpResponse?.message}</p> */}
-            <p>
-              کد تایید برای شماره موبایل {phoneNumber ? phoneNumber : "--"}
-              ارسال گردید.
-              <span className="inline px-1 underline underline-offset-4 text-primary-800">
-                ویرایش
-              </span>
-            </p>
+          <div className="text-xs px-3 w-full">
+            <p>{otpResponse?.data?.message}</p>
+            <span
+              onClick={onBack}
+              className="inline px-1 underline underline-offset-4 text-primary-800"
+            >
+              ویرایش
+            </span>
           </div>
         </div>
         {/*form */}
@@ -103,7 +106,7 @@ export default function CheckOtpForm({
           onSubmit={handleCheckOtpForm}
         >
           <span className="text-sm px-3 font-thin flex flex-row-reverse">
-            {time ? (
+            {validTime ? (
               <span className="flex flex-row-reverse">({time}) باقی مانده</span>
             ) : (
               <button
@@ -146,3 +149,10 @@ export default function CheckOtpForm({
     </div>
   );
 }
+
+// useEffect(() => {
+//   const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
+//   return () => {
+//     if (timer) clearInterval(timer);
+//   };
+// }, [time]);

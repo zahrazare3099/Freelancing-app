@@ -1,9 +1,8 @@
-import React from "react";
 import CompleteProfileForm from "../Features/Authentication/CompleteProfileForm";
 
 export default function CompleteProfile() {
   return (
-    <div className="w-full flex items-center justify-center pt-5">
+    <div className="w-full min-h-full h-screen">
       {/*container xl:max-w-screen-xl */}
       <CompleteProfileForm />
     </div>

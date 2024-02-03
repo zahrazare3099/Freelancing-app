@@ -2,8 +2,7 @@ import AuthContainer from "../Features/Authentication/AuthContainer";
 
 export default function Auth() {
   return (
-    <div className="AuthContainer w-full h-screen">
-      {/*container xl:max-w-screen-xl */}
+    <div className="AuthContainer w-full min-h-full h-screen">
       <AuthContainer />
     </div>
   );
