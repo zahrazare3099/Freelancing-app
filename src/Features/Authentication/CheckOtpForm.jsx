@@ -57,14 +57,15 @@ export default function CheckOtpForm({
       if (user.isActive == false) {
         return navigate("/complete-profile");
       }
-      if (user.isActive !== 2) {
+      if (user.isActive == 1) {
+        if (user.role == "OWNER") return navigate("/owner");
+        if (user.role == "FREELANCER") return navigate("/freelancer");
+      } else if (user.status !== 2) {
+        // status 0 or 1 (reject or pending)
         navigate("/");
         toast("پروفایل شما در انتطار تایید است.", { icon: "🕵️‍♀️" });
         return;
       }
-      // user.isActive == 1
-      if (user.role == "OWNER") return navigate("/owner");
-      if (user.role == "FREELANCER") return navigate("/freelancer");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -150,6 +151,7 @@ export default function CheckOtpForm({
   );
 }
 
+// in state initial time=90
 // useEffect(() => {
 //   const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
 //   return () => {

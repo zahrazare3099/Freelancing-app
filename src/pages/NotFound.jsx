@@ -3,8 +3,8 @@ import { HiArrowRight } from "react-icons/hi";
 import useMoveBack from "../hooks/useMoveBack";
 export default function NotFound() {
   return (
-    <div className="container xl:max-w-screen-xl h-screen p-5 pt-12 flex flex-col bg-secondary-0 text-secondary-800">
-      <div className="bg-secondary-200 p-5 rounded-xl">
+    <div className="h-screen p-5 pt-12 flex flex-col items-center bg-secondary-0 text-secondary-800">
+      <div className="bg-secondary-200 p-5 rounded-xl w-2/3">
         <div className="bg-secondary-300 p-5 rounded-xl">
           <button
             className="btn btn--secondary px-0 flex items-center justify-center gap-1 text-xs w-20"

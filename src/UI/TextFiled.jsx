@@ -16,6 +16,7 @@ export default function TextFiled({
         {required && <span className="text-error font-bold">*</span>}
       </label>
       <input
+        name={name}
         id={name}
         {...register(name, validationSchema)}
         autoComplete="off"

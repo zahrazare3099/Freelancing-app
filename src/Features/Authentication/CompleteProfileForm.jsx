@@ -24,22 +24,22 @@ export default function CompleteProfileForm() {
 
   // چک شود که وقتی اینپوت ها خالی هستند نشه ساب زد که ارور نده
   const completeProfileFormHandler = async (data = "") => {
-    console.log("data", data);
     try {
       const {
         data: { message, user },
       } = await mutateAsync(data);
       toast.success(message);
-      console.log("message", message);
-      console.log("user", user);
       // push to panel, based on role , Activiate , status
-      if (user.isActive !== 2) {
+      if (!user.isActive) navigate("/complete-profile");
+      if (user.status !== 2) {
         navigate("/");
         toast("پروفایل شما در انتطار تایید است.", { icon: "🕵️‍♀️" });
         return;
       }
-      if (user.role == "OWNER") return navigate("/owner");
-      if (user.role == "FREELANCER") return navigate("/freelancer");
+      if (user.status === 2) {
+        if (user.role == "OWNER") return navigate("/owner");
+        if (user.role == "FREELANCER") return navigate("/freelancer");
+      }
     } catch (error) {
       toast.error(error?.response?.data?.message);
       console.log("err", error?.response);
@@ -63,7 +63,7 @@ export default function CompleteProfileForm() {
           onSubmit={handleSubmit(completeProfileFormHandler)}
         >
           <TextFiled
-            name="username"
+            name="name"
             label="نام و نام خانوادگی"
             register={register}
             validationSchema={{

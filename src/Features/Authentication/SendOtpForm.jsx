@@ -1,7 +1,7 @@
 import TextFiled from "../../UI/TextFiled";
 import Pending from "../../UI/Pending";
-import useMoveBack from "../../hooks/useMoveBack";
 import { HiArrowRight } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 export default function SendOtpForm({
   isSendingOtp,
@@ -9,6 +9,7 @@ export default function SendOtpForm({
   register,
   errors,
 }) {
+  const navigate = useNavigate();
   return (
     <div className="w-full min-h-full bg-primary-200 flex flex-col items-center">
       <div className="bg-slate-100/10 shadow-lg ring-1 ring-black/5 rounded-b-3xl px-4 pb-3 flex flex-col items-center">
@@ -21,7 +22,7 @@ export default function SendOtpForm({
           <div className="w-full pb-3">
             <button
               className="flex items-center gap-1 text-xs w-20"
-              onClick={useMoveBack()}
+              onClick={() => navigate("/")}
             >
               <HiArrowRight className="text-red-600 w-3 h-3" /> بازگشت
             </button>

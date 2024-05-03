@@ -28,9 +28,9 @@ function App() {
           <Route
             path="/owner"
             element={
-              <ProtectedRoute>
-                <OwnerLayout />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <OwnerLayout />
+              // </ProtectedRoute>
             }
           >
             <Route index element={<Navigate to="dashboard" replace />} />
@@ -42,9 +42,9 @@ function App() {
           <Route
             path="/freelancer"
             element={
-              <ProtectedRoute>
-                <FreelancerLayout />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <FreelancerLayout />
+              // </ProtectedRoute>
             }
           >
             <Route index element={<Navigate to="dashboard" replace />} />
