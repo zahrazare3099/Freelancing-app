@@ -4,7 +4,7 @@ import HeaderApp from "./HeaderApp";
 export default function AppLayout({ children }) {
   return (
     <div className="h-screen flex ">
-      {/* <SidebarApp /> */}
+      {/* <SidebarApp /> insted of children */}
       {children}
       <div className="w-screen order-2 flex flex-col">
         <HeaderApp />

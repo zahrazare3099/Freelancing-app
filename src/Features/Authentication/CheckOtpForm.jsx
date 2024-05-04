@@ -52,14 +52,17 @@ export default function CheckOtpForm({
         data: { message, user },
       } = await mutateAsync({ phoneNumber, otp });
       toast.success(message);
+      // cheeeeeck
+      console.log("check role>>>>", user);
       // push to panel, based on role , Activiate , status
       // isActive: false ,isVerifiedPhoneNumber: true ,role: "USER" ,status: 1
-      if (user.isActive == false) {
+      if (user.isActive === false) {
         return navigate("/complete-profile");
       }
-      if (user.isActive == 1) {
-        if (user.role == "OWNER") return navigate("/owner");
-        if (user.role == "FREELANCER") return navigate("/freelancer");
+      if (user.isActive === true) {
+        if (user.role == "OWNER") return navigate("/owner/dashboard");
+        if (user.role == "FREELANCER") return navigate("/freelancer/dashboard");
+        if (user.role == "ADMIN") return navigate("/");
       } else if (user.status !== 2) {
         // status 0 or 1 (reject or pending)
         navigate("/");

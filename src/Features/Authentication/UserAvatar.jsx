@@ -1,7 +1,7 @@
 import useUser from "../../hooks/useUser";
 
 export default function UserAvatar() {
-  const { user = { name: "زهرا زارع" } } = useUser();
+  const { user } = useUser();
   return (
     <div className="flex gap-x-2">
       <div>

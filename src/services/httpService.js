@@ -20,7 +20,7 @@ export default http;
 // check all requst
 app.interceptors.request.use(
   (res) => res,
-  (err) => Promise.reject(err)
+  (err) => Promise.reject(err),
 );
 // check all response
 app.interceptors.response.use(
@@ -45,5 +45,5 @@ app.interceptors.response.use(
       }
     }
     return Promise.reject(err);
-  }
+  },
 );

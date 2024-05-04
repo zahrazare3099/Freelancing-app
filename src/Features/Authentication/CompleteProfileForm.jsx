@@ -28,6 +28,7 @@ export default function CompleteProfileForm() {
       const {
         data: { message, user },
       } = await mutateAsync(data);
+      console.log("omad 0");
       toast.success(message);
       // push to panel, based on role , Activiate , status
       if (!user.isActive) navigate("/complete-profile");
@@ -36,9 +37,11 @@ export default function CompleteProfileForm() {
         toast("پروفایل شما در انتطار تایید است.", { icon: "🕵️‍♀️" });
         return;
       }
-      if (user.status === 2) {
-        if (user.role == "OWNER") return navigate("/owner");
-        if (user.role == "FREELANCER") return navigate("/freelancer");
+      if (user.status === 2 && user.isActive) {
+        console.log("omad");
+        if (user.role == "OWNER") return navigate("/owner/dashboard");
+        if (user.role == "ADMIN") return navigate("/");
+        if (user.role == "FREELANCER") return navigate("/freelancer/dashboard");
       }
     } catch (error) {
       toast.error(error?.response?.data?.message);
